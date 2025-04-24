@@ -243,3 +243,28 @@ input[type="text"] {
     padding: 15px;
   }
 }
+/* Fix chat bubble alignment on mobile */
+@media (max-width: 600px) {
+  .chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #ffd000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
+
+  .chat-toggle img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin: 0;
+  }
+}
+
