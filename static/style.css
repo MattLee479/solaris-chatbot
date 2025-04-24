@@ -32,7 +32,7 @@ h1 + #chat-box {
 #chat-box {
   flex: 1;
   overflow-y: auto;
-  overflow-x: hidden;  /* ✅ Prevents horizontal scrolling */
+  overflow-x: hidden;
   padding: 10px;
   border: 1px solid #ddd;
   background: #ffffff;
@@ -61,8 +61,6 @@ h1 + #chat-box {
   background-color: #f9f9f9;
   position: relative;
   animation: fadeIn 0.3s ease-in-out;
-
-  /* ✅ Add these to fix the overflow issue */
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: pre-wrap;
@@ -208,12 +206,13 @@ input[type="text"] {
   color: #000;
 }
 
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile */
+/* Responsive layout */
 @media (max-width: 600px) {
   .quick-buttons {
     grid-template-columns: 1fr;
@@ -243,28 +242,28 @@ input[type="text"] {
     padding: 15px;
   }
 }
-/* Fix chat bubble alignment on mobile */
-@media (max-width: 600px) {
-  .chat-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: #ffd000;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    z-index: 9999;
-  }
 
-  .chat-toggle img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    margin: 0;
-  }
+/* ✅ Floating Chat Widget Button Fix */
+.chat-widget, .chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #ffd000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 9999;
+  cursor: pointer;
 }
 
+.chat-widget img,
+.chat-toggle img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  margin: 0;
+}

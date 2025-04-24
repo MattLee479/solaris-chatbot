@@ -1,9 +1,10 @@
 services:
   - type: web
-    name: solaris-chatbot
+    name: solar-chatbot
     env: python
-    buildCommand: ""
-    startCommand: gunicorn app:app
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
     envVars:
       - key: OPENAI_API_KEY
-        value: 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
+        sync: false

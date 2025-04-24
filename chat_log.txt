@@ -128,3 +128,11 @@ Bot: We install solar panels in England and Wales. If you are interested in our 
 User: test
 Bot: I am here to assist you with any questions you may have regarding UK solar panel services provided by Solaris Energy Solutions. How can I help you today?
 
+[2025-04-24 20:42:46] | Route: OpenAI
+User: hi there, tell me about solar energy
+Bot: Solar energy is a renewable energy source that comes from the sun's radiation. Solar panels capture sunlight and convert it into electricity, providing a sustainable and environmentally friendly way to power homes and businesses. If you have any specific questions about solar energy services in the UK, feel free to ask!
+
+[2025-04-24 20:49:17] | Route: OpenAI
+User: tell me about solar
+Bot: Solar energy is a sustainable and renewable source of power that is harnessed from sunlight using solar panels. Solar panels are made up of photovoltaic cells that convert sunlight into electricity, which can then be used to power homes, businesses, and other structures. Installing solar panels can help reduce electricity bills, lower carbon emissions, and contribute to a cleaner environment. If you're interested in learning more about solar energy or considering installing solar panels in the UK, you can reach out to our team at sales@solarisenergy.co.uk for more information.
+

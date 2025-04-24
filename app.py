@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for, s
 import openai, datetime, os
 from collections import defaultdict
 import matplotlib.pyplot as plt
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = Flask(__name__)
 app.secret_key = "Test"  # Change to a secure value in production
@@ -25,7 +28,7 @@ def home():
 
 @app.route('/home')
 def home_page():
-    return redirect(url_for("home"))
+    return render_template("home.html")
 
 @app.route('/chat', methods=['POST'])
 def chat():
