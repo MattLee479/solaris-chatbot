@@ -1,0 +1,245 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #eafdfc, #c8f1ff);
+  margin: 0;
+  padding: 20px;
+}
+
+.chat-container {
+  width: 100%;
+  background-color: #fffbea;
+  padding: 15px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  color: #444;
+  background-color: #ffd000;
+  padding: 8px 12px;
+  font-size: 18px;
+  border-radius: 10px;
+  margin: 0;
+}
+
+h1 + #chat-box {
+  margin-top: 10px;
+}
+
+#chat-box {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;  /* ✅ Prevents horizontal scrolling */
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #ffffff;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.message {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.bot {
+  justify-content: flex-start;
+}
+
+.user {
+  justify-content: flex-end;
+}
+
+.message .bubble {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+
+  /* ✅ Add these to fix the overflow issue */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.bot .bubble {
+  background-color: #fff3c4;
+  margin-left: 10px;
+}
+
+.user .bubble {
+  background-color: #c1f0dc;
+  margin-right: 10px;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: contain;
+  margin: 0 8px;
+  background-color: #fff;
+  padding: 2px;
+}
+
+/* Grid-style quick buttons */
+.quick-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.quick-buttons button {
+  background-color: #ffd000;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.quick-buttons button:hover {
+  background-color: #f0c200;
+}
+
+/* Input bar */
+.input-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  align-items: center;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-container button {
+  padding: 10px 15px;
+  background-color: #ffd000;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Footer */
+.chat-footer {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+}
+
+.footer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.footer-buttons button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.footer-buttons button:hover {
+  background-color: #f9f9f9;
+}
+
+/* Disclaimer */
+.disclaimer {
+  font-size: 12px;
+  color: #666;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Feedback */
+#feedback-form {
+  background-color: #fffbea;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.rating-scale {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.rating-scale span {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background-color: #eee;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.rating-scale span.selected {
+  background-color: #ffd000;
+  color: #000;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .quick-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .input-container {
+    flex-direction: column;
+  }
+
+  input[type="text"],
+  .input-container button {
+    width: 100%;
+  }
+
+  #chat-box {
+    max-height: 250px;
+  }
+
+  .rating-scale span {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  #feedback-form {
+    width: 90%;
+    padding: 15px;
+  }
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solaris Energy Chatbot</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .rating-scale {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+    .rating-scale span {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background-color: #eee;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .rating-scale span.selected {
+      background-color: #ffd000;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <h1>Solaris Energy Chat Support</h1>
+    <div id="chat-box" class="chat-box"></div>
+
+    <div class="quick-buttons">
+      <button onclick="sendQuick('What areas do you install solar panels in?')">Installation Areas</button>
+      <button onclick="sendQuick('Do you offer financing options?')">Financing</button>
+      <button onclick="sendQuick('How much can I save with solar panels?')">Savings</button>
+      <button onclick="sendQuick('What is your warranty policy?')">Warranty</button>
+    </div>
+
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Ask me anything about our solar services...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <div class="chat-footer">
+      <div class="footer-buttons">
+        <button onclick="clearChat()">Clear Chat</button>
+        <button onclick="showFeedbackForm()">End Chat</button>
+      </div>
+      <span>Powered by Solaris AI</span>
+    </div>
+  </div>
+
+  <div id="feedback-form" style="display:none; text-align:center; margin-top:20px;">
+    <h3>How would you rate this chat?</h3>
+    <div class="rating-scale">
+      <span onclick="rate(1)">1</span><span onclick="rate(2)">2</span><span onclick="rate(3)">3</span><span onclick="rate(4)">4</span>
+      <span onclick="rate(5)">5</span><span onclick="rate(6)">6</span><span onclick="rate(7)">7</span><span onclick="rate(8)">8</span>
+      <span onclick="rate(9)">9</span><span onclick="rate(10)">10</span>
+    </div>
+    <textarea id="feedback-comment" rows="3" placeholder="Optional comment..." style="width: 80%; margin-top:10px;"></textarea><br>
+    <button onclick="submitFeedback()">Submit</button>
+    <button onclick="skipFeedback()">Skip</button>
+  </div>
+
+  <div class="chat-footer disclaimer">
+    <p>This AI assistant provides general solar information and may not reflect the latest company updates. Always confirm with a team member.</p>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const inputField = document.getElementById("user-input");
+  
+    function appendMessage(type, text) {
+      const messageDiv = document.createElement("div");
+      messageDiv.classList.add("message", type);
+  
+      const avatar = document.createElement("img");
+      avatar.className = "avatar";
+      avatar.src = type === "user" ? "/static/user-icon.png" : "/static/solar-bot.png";
+  
+      const bubble = document.createElement("div");
+      bubble.classList.add("bubble");
+      bubble.textContent = text;
+  
+      if (type === "user") {
+        messageDiv.appendChild(bubble);
+        messageDiv.appendChild(avatar);
+      } else {
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(bubble);
+      }
+  
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  
+    function appendTypingIndicator() {
+      const typingDiv = document.createElement("div");
+      typingDiv.classList.add("message", "bot");
+      typingDiv.id = "typing-indicator";
+  
+      const avatar = document.createElement("img");
+      avatar.className = "avatar";
+      avatar.src = "/static/solar-bot.png";
+  
+      const bubble = document.createElement("div");
+      bubble.classList.add("bubble");
+      bubble.textContent = "Solaris is typing...";
+  
+      typingDiv.appendChild(avatar);
+      typingDiv.appendChild(bubble);
+  
+      chatBox.appendChild(typingDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  
+    function removeTypingIndicator() {
+      const typing = document.getElementById("typing-indicator");
+      if (typing) typing.remove();
+    }
+  
+    async function sendMessage() {
+      const message = inputField.value.trim();
+      if (!message) return;
+  
+      appendMessage("user", message);
+      inputField.value = "";
+  
+      appendTypingIndicator();
+  
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message })
+        });
+  
+        const data = await response.json();
+        removeTypingIndicator();
+        appendMessage("bot", data.reply);
+      } catch (error) {
+        removeTypingIndicator();
+        appendMessage("bot", "Sorry, something went wrong. Please try again later.");
+      }
+    }
+  
+    function sendQuick(text) {
+      inputField.value = text;
+      sendMessage();
+    }
+  
+    function clearChat() {
+      chatBox.innerHTML = "";
+    }
+  
+    // Feedback
+    let selectedRating = 0;
+  
+    function rate(number) {
+      selectedRating = number;
+      document.querySelectorAll('.rating-scale span').forEach((el, i) => {
+        el.classList.toggle('selected', i + 1 === number);
+      });
+    }
+  
+    async function submitFeedback() {
+      const comment = document.getElementById("feedback-comment").value;
+      try {
+        await fetch("/feedback", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ rating: selectedRating, comment })
+        });
+        document.getElementById("feedback-form").innerHTML = "<p>Thanks for your feedback!</p>";
+      } catch (err) {
+        alert("Failed to submit feedback.");
+      }
+    }
+  
+    function skipFeedback() {
+      document.getElementById("feedback-form").style.display = "none";
+    }
+  
+    function showFeedbackForm() {
+      document.getElementById("feedback-form").style.display = "block";
+    }
+  
+    // Initial message
+    appendMessage("bot", "Hello! How can I assist you today?");
+  </script>
+  
+</body>
+</html>

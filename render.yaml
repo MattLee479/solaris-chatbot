@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: solaris-chatbot
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: OPENAI_API_KEY
+        value: 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

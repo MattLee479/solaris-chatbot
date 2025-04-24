@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solaris Energy</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f8fc;
+    }
+
+    .hero {
+      position: relative;
+      background: url("/static/hero-solar.png") center/cover no-repeat;
+      color: white;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.4em;
+      background: #ffd000;
+      color: #222;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+
+    .hero p {
+      margin-top: 15px;
+      font-size: 1.2em;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .buttons a {
+      padding: 12px 18px;
+      margin: 10px;
+      background: #ff4d4d;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .stat {
+      background: white;
+      margin: 0 15px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .stat h2 {
+      color: #e60000;
+    }
+
+    .section {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .chat-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #ffd000;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .chat-frame {
+      display: none;
+      position: fixed;
+      right: 20px;
+      bottom: 90px;
+      width: 350px;
+      height: 500px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    .chat-frame.open {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>THE UK’S TRUSTED SOLAR INSTALLER</h1>
+    <p>Helping thousands of homeowners switch to affordable, renewable solar energy with confidence.</p>
+    <div class="buttons">
+      <a href="#">Get a Free Quote</a>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <h2>45,000+</h2>
+      <p>Solar & Battery Installs</p>
+    </div>
+    <div class="stat">
+      <h2>150,000+</h2>
+      <p>Tonnes of CO₂ Saved</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose Solaris?</h2>
+    <p>We make it easy to switch to solar with expert consultations, affordable packages, and certified UK-wide installers.</p>
+  </div>
+
+  <div class="section" style="background-color: #f1f6fa;">
+    <h2>What Our Customers Say</h2>
+    <p>“Professional, friendly, and everything was installed within a week!” — Jane M, Manchester</p>
+  </div>
+
+  <!-- Floating Chat Icon -->
+  <button class="chat-button" onclick="toggleChat()">💬</button>
+
+  <!-- Chat iframe -->
+  <iframe id="chatFrame" class="chat-frame" src="/"></iframe>
+
+  <script>
+    function toggleChat() {
+      const chat = document.getElementById('chatFrame');
+      chat.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

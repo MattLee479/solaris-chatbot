@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - Solaris</title>
+  <link rel="stylesheet" href="/static/admin-style.css">
+</head>
+<body class="admin-dashboard-body">
+  <div class="admin-header">
+    <h1 class="admin-header-title">Solaris Admin Dashboard</h1>
+    <a href="/admin/logout">Logout</a>
+  </div>
+
+  <div class="admin-buttons">
+    <a href="/admin/download" class="admin-btn">Download Logs</a>
+    <a href="/admin/charts" class="admin-btn">Refresh Charts</a>
+    <a href="/admin/filter?type=Quote" class="admin-btn">View Quotes</a>
+    <a href="/admin/filter?type=Unanswered" class="admin-btn">Unanswered</a>
+  </div>
+
+  <div class="charts-preview">
+    <h2>Quick Stats</h2>
+    <div class="chart-wrapper">
+      <h3>Most Asked Categories</h3>
+      <img src="/static/route_chart.png" alt="Route Chart" class="chart-img">
+    </div>
+    <div class="chart-wrapper">
+      <h3>Chat Volume by Hour</h3>
+      <img src="/static/hour_chart.png" alt="Hour Chart" class="chart-img">
+    </div>
+  </div>
+
+  <div class="admin-logs">
+    <h2>Recent Logs</h2>
+    {% for log in logs %}
+      <div class="log-entry">{{ log|safe }}</div>
+    {% endfor %}
+  </div>
+</body>
+</html>
