@@ -136,3 +136,15 @@ Bot: Solar energy is a renewable energy source that comes from the sun's radiati
 User: tell me about solar
 Bot: Solar energy is a sustainable and renewable source of power that is harnessed from sunlight using solar panels. Solar panels are made up of photovoltaic cells that convert sunlight into electricity, which can then be used to power homes, businesses, and other structures. Installing solar panels can help reduce electricity bills, lower carbon emissions, and contribute to a cleaner environment. If you're interested in learning more about solar energy or considering installing solar panels in the UK, you can reach out to our team at sales@solarisenergy.co.uk for more information.
 
+[2025-04-27 18:14:25] | Route: OpenAI
+User: are you a real person?
+Bot: I am an AI assistant here to provide information about Solaris Energy Solutions, a UK-based solar energy provider. How can I assist you today?
+
+[2025-04-27 18:14:34] | Route: OpenAI
+User: do you use chatgpt?
+Bot: I'm here to provide information about Solaris Energy Solutions' solar panel services in the UK. If you have any questions about our services, pricing, warranties, or anything else related to solar energy, feel free to ask!
+
+[2025-04-27 18:48:20] | Route: OpenAI
+User: are you a person?
+Bot: I am an AI assistant representing Solaris Energy Solutions, a UK-based solar energy provider. How can I assist you today with questions regarding our solar panel services?
+

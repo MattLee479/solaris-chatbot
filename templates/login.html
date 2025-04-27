@@ -3,20 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login</title>
+  <title>Solaris Admin Login</title>
   <link rel="stylesheet" href="/static/admin-style.css">
 </head>
+
 <body>
   <div class="login-container">
     <img src="/static/solar-bot.png" alt="Solaris Logo" class="admin-logo">
     <h1>Solaris Admin Login</h1>
-    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
     <form method="POST">
-      <input type="text" name="username" placeholder="Username" required><br>
-      <input type="password" name="password" placeholder="Password" required><br>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
-    <p class="login-footer">Secure access for authorized staff only.</p>
+
+    <p class="login-footer">🔒 Secure access for authorized staff only.</p>
   </div>
 </body>
 </html>

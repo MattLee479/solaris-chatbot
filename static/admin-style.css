@@ -3,25 +3,21 @@ body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-}
-
-/* Admin Dashboard Layout */
-.admin-dashboard-body {
   background: linear-gradient(to bottom right, #f7fafc, #dceeff);
 }
 
-/* Header Bar */
+/* Admin Header */
 .admin-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   background-color: #ffd000;
+  padding: 20px;
 }
 
 .admin-header-title {
   margin: 0;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   color: #222;
 }
@@ -29,41 +25,46 @@ body {
 .admin-header a {
   text-decoration: none;
   font-weight: bold;
-  color: #222;
   background: #fff;
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius: 6px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  color: #222;
+  transition: background 0.2s ease;
 }
 
-/* Dashboard Buttons */
+.admin-header a:hover {
+  background: #f9f9f9;
+}
+
+/* Admin Buttons */
 .admin-buttons {
   text-align: center;
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
 .admin-btn {
   display: inline-block;
-  padding: 10px 20px;
-  margin: 5px;
+  padding: 12px 22px;
+  margin: 8px;
   background-color: #ffd000;
   color: #222;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s;
 }
 
 .admin-btn:hover {
   background-color: #f0c200;
 }
 
-/* Charts Section */
+/* Charts */
 .charts-preview {
-  max-width: 900px;
-  margin: 0 auto 30px auto;
-  background: #fff;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  background: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
@@ -78,18 +79,18 @@ body {
   max-width: 600px;
   display: block;
   margin: 0 auto;
+  background: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background: #fff;
   padding: 10px;
 }
 
-/* Chat Log Entries */
+/* Admin Logs */
 .admin-logs {
-  max-width: 900px;
-  margin: 0 auto 40px auto;
+  max-width: 1000px;
+  margin: 0 auto 50px;
   background: #ffffff;
-  padding: 20px;
+  padding: 25px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
@@ -97,19 +98,19 @@ body {
 .log-entry {
   background: #fdfdfd;
   border: 1px solid #ddd;
-  padding: 12px;
-  margin-bottom: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
   border-radius: 8px;
   font-size: 14px;
   white-space: pre-line;
   font-family: monospace;
 }
 
-/* Login Page Styles */
+/* Login Page */
 .login-container {
   max-width: 400px;
   margin: 80px auto;
-  background-color: #ffffff;
+  background: #ffffff;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -124,6 +125,7 @@ body {
 h1 {
   color: #444;
   margin-bottom: 20px;
+  font-size: 24px;
 }
 
 input[type="text"],
@@ -144,6 +146,8 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -156,7 +160,19 @@ button:hover {
 }
 
 .login-footer {
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 13px;
   color: #666;
+}
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
+  .charts-preview, .admin-logs {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .chart-img {
+    max-width: 100%;
+  }
 }

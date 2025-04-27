@@ -38,3 +38,51 @@
   </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solaris Admin Dashboard</title>
+  <link rel="stylesheet" href="/static/admin-style.css">
+</head>
+
+<body class="admin-dashboard-body">
+  <div class="admin-header">
+    <h1 class="admin-header-title">Solaris Admin Dashboard</h1>
+    <a href="/admin/logout">Logout</a>
+  </div>
+
+  <div class="admin-buttons">
+    <a href="/admin/download" class="admin-btn">📄 Download Logs</a>
+    <a href="/admin/charts" class="admin-btn">📊 Refresh Charts</a>
+  </div>
+
+  <div class="charts-preview">
+    <h2>📈 Quick Stats</h2>
+    <div class="chart-wrapper">
+      <h3>Most Asked Categories</h3>
+      <img src="/static/route_chart.png" alt="Most Asked Chart" class="chart-img" onerror="this.style.display='none';">
+    </div>
+    <div class="chart-wrapper">
+      <h3>Chat Volume by Hour</h3>
+      <img src="/static/hour_chart.png" alt="Hourly Chat Chart" class="chart-img" onerror="this.style.display='none';">
+    </div>
+    <div class="chart-wrapper">
+      <h3>Feedback Ratings</h3>
+      <img src="/static/feedback_chart.png" alt="Feedback Chart" class="chart-img" onerror="this.style.display='none';">
+    </div>
+  </div>
+
+  <div class="admin-logs">
+    <h2>📝 Recent Logs</h2>
+    {% if logs %}
+      {% for log in logs %}
+        <div class="log-entry">{{ log|safe }}</div>
+      {% endfor %}
+    {% else %}
+      <p style="text-align:center;">No logs available yet.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

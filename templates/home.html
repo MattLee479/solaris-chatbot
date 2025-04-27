@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Solaris Energy</title>
   <link rel="stylesheet" href="/static/style.css">
   <style>
@@ -13,147 +13,307 @@
     }
 
     .hero {
-      position: relative;
       background: url("/static/hero-solar.png") center/cover no-repeat;
-      color: white;
       height: 400px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       text-align: center;
+      color: white;
+      padding: 20px;
     }
 
     .hero h1 {
-      font-size: 2.4em;
+      font-size: 2.2em;
       background: #ffd000;
       color: #222;
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 10px;
-      margin: 0 auto;
+      padding: 12px 20px;
+      border-radius: 12px;
+      margin: 10px 0;
     }
 
     .hero p {
       margin-top: 15px;
       font-size: 1.2em;
-      text-shadow: 1px 1px 3px #000;
-    }
-
-    .buttons {
-      margin-top: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
     }
 
     .buttons a {
       padding: 12px 18px;
-      margin: 10px;
+      margin-top: 20px;
       background: #ff4d4d;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
+      border-radius: 8px;
       text-decoration: none;
+      font-weight: bold;
       color: white;
+      display: inline-block;
     }
 
     .stats {
       display: flex;
       justify-content: center;
-      margin-top: 30px;
+      flex-wrap: wrap;
+      margin: 40px 0;
     }
 
     .stat {
       background: white;
-      margin: 0 15px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin: 15px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       text-align: center;
+      width: 200px;
     }
 
     .stat h2 {
       color: #e60000;
+      margin-bottom: 10px;
     }
 
     .section {
       text-align: center;
-      padding: 40px 20px;
+      padding: 50px 20px;
     }
 
-    .chat-button {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      background-color: #ffd000;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 28px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    .chat-frame {
-      display: none;
-      position: fixed;
-      right: 20px;
-      bottom: 90px;
-      width: 350px;
-      height: 500px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
-
-    .chat-frame.open {
-      display: block;
+    .section:nth-child(even) {
+      background-color: #f1f6fa;
     }
   </style>
 </head>
+
 <body>
 
-  <div class="hero">
-    <h1>THE UK’S TRUSTED SOLAR INSTALLER</h1>
-    <p>Helping thousands of homeowners switch to affordable, renewable solar energy with confidence.</p>
-    <div class="buttons">
-      <a href="#">Get a Free Quote</a>
+<!-- Hero Section -->
+<div class="hero">
+  <h1>THE UK’S TRUSTED SOLAR INSTALLER</h1>
+  <p>Helping thousands of homeowners switch to affordable, renewable solar energy with confidence.</p>
+  <div class="buttons">
+    <a href="#">Get a Free Quote</a>
+  </div>
+</div>
+
+<!-- Stats Section -->
+<div class="stats">
+  <div class="stat">
+    <h2>45,000+</h2>
+    <p>Solar & Battery Installs</p>
+  </div>
+  <div class="stat">
+    <h2>150,000+</h2>
+    <p>Tonnes of CO₂ Saved</p>
+  </div>
+</div>
+
+<!-- Why Choose Section -->
+<div class="section">
+  <h2>Why Choose Solaris?</h2>
+  <p>We make it easy to switch to solar with expert consultations, affordable packages, and certified UK-wide installers.</p>
+</div>
+
+<!-- Testimonials Section -->
+<div class="section">
+  <h2>What Our Customers Say</h2>
+  <p>“Professional, friendly, and everything was installed within a week!” — Jane M, Manchester</p>
+</div>
+
+<!-- Floating Chat Button -->
+<div class="chat-widget" id="chat-widget" onclick="toggleChat()">
+  <img src="/static/speech-icon.png" alt="Chat">
+</div>
+
+<!-- Chat Container -->
+<div id="chat-container">
+  <div class="chat-header">
+    <span>Solaris Energy Support</span>
+    <button class="close-chat" onclick="closeChat()">×</button>
+  </div>
+
+  <div id="chat-box" class="chat-box"></div>
+
+  <div class="quick-buttons" id="quick-buttons">
+    <button onclick="sendQuick('What areas do you install solar panels in?')">Installation Areas</button>
+    <button onclick="sendQuick('Do you offer financing options?')">Financing</button>
+    <button onclick="sendQuick('How much can I save with solar panels?')">Savings</button>
+    <button onclick="sendQuick('What is your warranty policy?')">Warranty</button>
+  </div>
+
+  <div class="input-container">
+    <input type="text" id="user-input" placeholder="Ask me anything..." onkeydown="if (event.key === 'Enter') sendMessage()">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <div class="chat-footer">
+    <div class="footer-buttons">
+      <button onclick="clearChat()">Clear Chat</button>
+      <button onclick="showFeedbackForm()">End Chat</button>
     </div>
+    <p>Powered by Solaris AI</p>
   </div>
+</div>
 
-  <div class="stats">
-    <div class="stat">
-      <h2>45,000+</h2>
-      <p>Solar & Battery Installs</p>
-    </div>
-    <div class="stat">
-      <h2>150,000+</h2>
-      <p>Tonnes of CO₂ Saved</p>
-    </div>
+<!-- Feedback Form -->
+<div id="feedback-form" style="display:none; text-align:center; margin-top:20px;">
+  <h3>How would you rate this chat?</h3>
+  <div class="rating-scale">
+    <span onclick="rate(1)">1</span><span onclick="rate(2)">2</span><span onclick="rate(3)">3</span><span onclick="rate(4)">4</span>
+    <span onclick="rate(5)">5</span><span onclick="rate(6)">6</span><span onclick="rate(7)">7</span><span onclick="rate(8)">8</span>
+    <span onclick="rate(9)">9</span><span onclick="rate(10)">10</span>
   </div>
+  <textarea id="feedback-comment" rows="3" placeholder="Optional comment..." style="width: 80%; margin-top:10px;"></textarea><br>
+  <button onclick="submitFeedback()">Submit</button>
+  <button onclick="skipFeedback()">Skip</button>
+</div>
 
-  <div class="section">
-    <h2>Why Choose Solaris?</h2>
-    <p>We make it easy to switch to solar with expert consultations, affordable packages, and certified UK-wide installers.</p>
-  </div>
+<div class="chat-footer disclaimer">
+  <p>This AI assistant provides general solar information and may not reflect the latest company updates. Always confirm with a team member.</p>
+</div>
 
-  <div class="section" style="background-color: #f1f6fa;">
-    <h2>What Our Customers Say</h2>
-    <p>“Professional, friendly, and everything was installed within a week!” — Jane M, Manchester</p>
-  </div>
+<!-- Chat JavaScript -->
+<script>
+  const chatBox = document.getElementById("chat-box");
+  const inputField = document.getElementById("user-input");
+  const quickButtons = document.getElementById("quick-buttons");
+  const chatWidget = document.getElementById("chat-widget");
+  const chatContainer = document.getElementById("chat-container");
 
-  <!-- Floating Chat Icon -->
-  <button class="chat-button" onclick="toggleChat()">💬</button>
+  function toggleChat() {
+    chatContainer.classList.toggle("open");
+    chatWidget.style.display = chatContainer.classList.contains("open") ? "none" : "flex";
+  }
 
-  <!-- Chat iframe -->
-  <iframe id="chatFrame" class="chat-frame" src="/"></iframe>
+  function closeChat() {
+    chatContainer.classList.remove("open");
+    chatWidget.style.display = "flex";
+  }
 
-  <script>
-    function toggleChat() {
-      const chat = document.getElementById('chatFrame');
-      chat.classList.toggle('open');
+  function appendMessage(type, text) {
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("message", type);
+
+    const avatar = document.createElement("img");
+    avatar.className = "avatar";
+    avatar.src = type === "user" ? "/static/user-icon.png" : "/static/solar-bot.png";
+
+    const bubble = document.createElement("div");
+    bubble.classList.add("bubble");
+    bubble.textContent = text;
+
+    if (type === "user") {
+      messageDiv.appendChild(bubble);
+      messageDiv.appendChild(avatar);
+    } else {
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(bubble);
     }
-  </script>
+
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function appendTypingIndicator() {
+    const typingDiv = document.createElement("div");
+    typingDiv.classList.add("message", "bot");
+    typingDiv.id = "typing-indicator";
+
+    const avatar = document.createElement("img");
+    avatar.className = "avatar";
+    avatar.src = "/static/solar-bot.png";
+
+    const bubble = document.createElement("div");
+    bubble.classList.add("bubble");
+    bubble.textContent = "Solaris is typing...";
+
+    typingDiv.appendChild(avatar);
+    typingDiv.appendChild(bubble);
+
+    chatBox.appendChild(typingDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function removeTypingIndicator() {
+    const typing = document.getElementById("typing-indicator");
+    if (typing) typing.remove();
+  }
+
+  async function sendMessage() {
+    const message = inputField.value.trim();
+    if (!message) return;
+
+    appendMessage("user", message);
+    inputField.value = "";
+
+    appendTypingIndicator();
+
+    try {
+      const response = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
+
+      const data = await response.json();
+      removeTypingIndicator();
+      appendMessage("bot", data.reply);
+    } catch (error) {
+      removeTypingIndicator();
+      appendMessage("bot", "Sorry, something went wrong. Please try again later.");
+    }
+  }
+
+  function sendQuick(text) {
+    inputField.value = text;
+    sendMessage();
+  }
+
+  function clearChat() {
+    chatBox.innerHTML = "";
+  }
+
+  function showFeedbackForm() {
+    document.getElementById("feedback-form").style.display = "block";
+  }
+
+  function skipFeedback() {
+    document.getElementById("feedback-form").style.display = "none";
+  }
+
+  let selectedRating = 0;
+
+  function rate(number) {
+    selectedRating = number;
+    document.querySelectorAll('.rating-scale span').forEach((el, i) => {
+      el.classList.toggle('selected', i + 1 === number);
+    });
+  }
+
+  async function submitFeedback() {
+    const comment = document.getElementById("feedback-comment").value;
+    try {
+      await fetch("/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rating: selectedRating, comment })
+      });
+      document.getElementById("feedback-form").innerHTML = "<p>Thanks for your feedback!</p>";
+    } catch (err) {
+      alert("Failed to submit feedback.");
+    }
+  }
+
+  function hideQuickButtonsIfMobile() {
+    if (window.innerWidth <= 600) {
+      quickButtons.style.display = "none";
+    }
+  }
+
+  window.addEventListener("resize", hideQuickButtonsIfMobile);
+  window.addEventListener("load", hideQuickButtonsIfMobile);
+
+  // Start bot message
+  appendMessage("bot", "Hello! How can I assist you today?");
+</script>
+
 </body>
 </html>
